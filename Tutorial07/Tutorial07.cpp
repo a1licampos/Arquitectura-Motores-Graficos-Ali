@@ -4,6 +4,10 @@
 // This application demonstrates texturing
 //
 // Copyright (c) Microsoft Corporation. All rights reserved.
+// 
+// Ali Campos 
+// 
+// Clase Arquitectura
 //--------------------------------------------------------------------------------------
 #include <windows.h>
 #include <d3d11.h>
