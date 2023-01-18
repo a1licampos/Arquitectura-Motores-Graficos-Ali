@@ -10,6 +10,8 @@
 // Clase Arquitectura
 // 
 // Gracias Javi
+// 
+// Muchas Gracias Javi x2
 //--------------------------------------------------------------------------------------
 #include <windows.h>
 #include <d3d11.h>
