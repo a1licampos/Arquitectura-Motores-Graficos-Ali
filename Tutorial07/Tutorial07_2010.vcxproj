@@ -397,12 +397,12 @@
     <ClCompile Include="src\Tutorial07.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Tutorial07.fx" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="Include\Resource.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="bin\Tutorial07.fx">
+      <FileType>Document</FileType>
+    </None>
   </ItemGroup>
   <ItemGroup>
   </ItemGroup>
