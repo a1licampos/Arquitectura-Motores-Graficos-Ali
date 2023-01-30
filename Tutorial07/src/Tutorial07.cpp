@@ -50,6 +50,13 @@ struct CBChangesEveryFrame
     XMFLOAT4 vMeshColor;
 };
 
+struct Vector3
+{
+    float x = 0.0f;
+    float y = 0.0f;
+    float z = 0.0f;
+};
+
 
 //--------------------------------------------------------------------------------------
 // Global Variables
@@ -82,6 +89,9 @@ XMMATRIX                            g_View;
 XMMATRIX                            g_Projection;
 XMFLOAT4                            g_vMeshColor( 0.7f, 0.7f, 0.7f, 1.0f );
 Camera                              cam;
+
+Vector3 v3Position;
+float fSpeed = 1.0f;
 
 //--------------------------------------------------------------------------------------
 // Forward declarations
@@ -627,10 +637,11 @@ HRESULT InitDevice()
 //Esta función está encargada de actualizar la 
 //LÓGICA del programa
 //Matemáticas, física, buffers, etc...
+static float t = 0.0f;
 void update()
 {
     // Update our time
-    static float t = 0.0f;
+    /*static float t = 0.0f;*/
     if (g_driverType == D3D_DRIVER_TYPE_REFERENCE)
     {
         t += (float)XM_PI * 0.0125f;
@@ -651,7 +662,11 @@ void update()
 
 
     // Rotate cube around the origin
-    g_World = XMMatrixScaling(.5f, .5f, .5f) * XMMatrixRotationY(t) * XMMatrixTranslation(1, 0, 0);
+    //g_World = XMMatrixScaling(.5f, .5f, .5f) * XMMatrixRotationY(t) * XMMatrixTranslation(1, 0, 0);
+
+    //https://learn.microsoft.com/es-es/shows/introduction-to-c-and-directx-game-development/03
+    g_World = XMMatrixScaling(.5f, .5f, .5f) * XMMatrixRotationY(t) * XMMatrixTranslation(v3Position.x, v3Position.y, v3Position.z);
+
 
     //
     // Update variables that change once per frame
@@ -717,6 +732,30 @@ LRESULT CALLBACK WndProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam 
             PostQuitMessage( 0 );
             break;
 
+        case WM_KEYDOWN:
+
+            /*if (wParam == VK_LEFT)
+            {
+                v3Position.x -=  fSpeed * t;
+            }
+
+            if (wParam == VK_RIGHT)
+            {
+                v3Position.x += fSpeed * t;
+            }*/
+
+            switch (wParam)
+            {
+                case 'A':
+                    v3Position.x -= fSpeed * t;
+                    break;
+
+                case 'D':
+                    v3Position.x += fSpeed * t;
+                    break;
+            }
+
+            break;
         default:
             return DefWindowProc( hWnd, message, wParam, lParam );
     }
